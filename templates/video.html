@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Sentiment Analysis Results</title>
+    <style>
+        .logo {
+            display: block;
+            margin: 20px auto;
+            width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <img src="/static/images/youtube-logo.png" alt="YouTube Logo" class="logo">  <!-- Local image -->
+        <!-- OR using a URL -->
+        <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube Logo" class="logo"> -->
+        <h2>Video Details</h2>
+        <ul class="list-group mb-4">
+            <li class="list-group-item"><strong>Title:</strong> {{ video_details.title }}</li>
+            <li class="list-group-item"><strong>Channel Name:</strong> {{ video_details.channel }}</li>
+            <li class="list-group-item"><strong>Number of Views:</strong> {{ video_details.views }}</li>
+            <li class="list-group-item"><strong>Published Date:</strong> {{ video_details.published_at }}</li>
+        </ul>
+
+        <h2>Comments for Video ID: {{ video_id }}</h2>
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th>Comment</th>
+                    <th>Author</th>
+                    <th>Published At</th>
+                    <th>Language</th>
+                    <th>Sentiment Score (-1 to 1)</th>
+                    <th>Sentiment Category</th>
+                    <th>Like Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sentiment in sentiments %}
+                <tr>
+                    <td>{{ sentiment.comment }}</td>
+                    <td>{{ sentiment.author }}</td>
+                    <td>{{ sentiment.published_at }}</td>
+                    <td>{{ sentiment.language_full }}</td>
+                    <td>{{ sentiment.score }}</td>
+                    <td>{{ sentiment.sentiment_category }}</td>
+                    <td>{{ sentiment.like_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/" class="btn btn-primary">Go Back</a>
+    </div>
+</body>
+</html>
